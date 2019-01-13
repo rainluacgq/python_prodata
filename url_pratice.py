@@ -1,13 +1,13 @@
 #coding:utf-8
+#### 爬取妹子图网图片#####
+
 import urllib.request
-import re
+import re#正则表达式
 import sys
-import sys
-import codecs
 import os
-sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 #all_urls = []
 path = "E:/python/pic/"
+##测试、下载图片
 def openurl():
     headers={ 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0',
                 'HOST':'i.meizitu.net',
@@ -32,6 +32,7 @@ def openurl():
     htmlfile.write(html)
     htmlfile.close()
    #print(html)
+#打开url
 def run(url):
     # 头文件，header是字典类型 
     headers = {  
@@ -101,44 +102,6 @@ def findurl(html):
                     f.write(tempfile)
                     f.close()
 
-    #all_pic_link = re.findall('<li><a href="(.*?)" target="_blank">',html,re.S)
-    #print(all_pic_link)
-    #print(all_pic_link)
-    '''
-    index =0
-    for i in all_pic_link:
-        #print (i)
-        for j in range(40):
-            url  = i+"/"+str(j)
-            #print(url)
-            #print("\n")
-            html = run(url)
-            all_pic_temp = re.findall('<img src="(.*?)" alt=',html,re.S)
-            #print(all_pic_temp)
-            for m in all_pic_temp:
-                print(m)
-                headers={ 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0',
-                'HOST':'i.meizitu.net',
-                'Accept': '*/*',
-                'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Referer': 'https://www.mzitu.com/xinggan/',
-                'DNT': '1',
-                'Connection': 'keep-alive'
-                }
-                req =urllib.request.Request(url= m,headers=headers)
-                rspon = urllib.request.urlopen(req)
-                tempfile = rspon.read()
-                filename = path+str(index)+".jpg"
-                index = index +1
-                with open(filename,'wb') as f :
-                    f.write(tempfile)
-                    f.close()
-                    
-    '''    
-    #print(title)
-#def download:
-
 def main():
 
     #openurl()
@@ -149,12 +112,7 @@ def main():
         temp_url = temp_url+"page/" + str(page_idx)+"/"
         html = run(temp_url)
         findurl(html)
-    '''
-    html = run(url)
-    findurl(html)
-    '''
 
-    pass
 
 if __name__ == '__main__':
     main()
